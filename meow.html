@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>I'm Sorry 💔</title>
+  <style>
+    /* Import Google font */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+      background: linear-gradient(to bottom right, #ffe6e6, #fff0f5);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 40px;
+      overflow-x: hidden;
+      position: relative;
+      margin: 0;
+    }
+
+    h1 {
+      color: #d32f2f;
+      font-size: 3em;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    p {
+      font-size: 1.3em;
+      color: #444;
+      margin-top: 20px;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    button {
+      background-color: #f06292;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: background 0.3s ease;
+      animation: fadeIn 4s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #ec407a;
+    }
+
+    .heart {
+      font-size: 3em;
+      animation: pulse 1s infinite ease-in-out;
+      margin: 20px;
+    }
+
+    #message {
+      margin-top: 30px;
+      font-size: 1.5em;
+      color: #c2185b;
+    }
+
+    #score {
+      font-size: 1.2em;
+      color: #e91e63;
+      margin-top: 20px;
+    }
+
+    .floating-heart {
+      position: absolute;
+      font-size: 2.5em;
+      cursor: pointer;
+      animation: floatUp 8s ease-in-out forwards;
+      opacity: 1;
+      z-index: 1000;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(100vh) scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-20vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .falling-flower {
+      position: absolute;
+      font-size: 1.8em;
+      animation: fall 5s linear infinite;
+      opacity: 1;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10%); opacity: 1; }
+      100% { transform: translateY(110vh); opacity: 0; }
+    }
+
+    #envelope {
+      display: none;
+      margin: 50px auto;
+      cursor: pointer;
+      font-size: 4em;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    #letter {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.5em;
+      color: #880e4f;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .cat-paw {
+      position: absolute;
+      width: 120px;
+      animation: swipe 1s ease-in-out forwards;
+      pointer-events: none;
+      opacity: 0.8;
+      transform-origin: center center;
+    }
+
+    @keyframes swipe {
+      0% {
+        transform: translateY(50px) scale(0.8);
+        opacity: 0;
+      }
+      50% {
+        transform: translateY(0px) scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(50px) scale(1);
+        opacity: 0;
+      }
+    }
+
+    .catch-message {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Poppins', sans-serif;
+      font-size: 2em;
+      font-weight: 600;
+      color: #880e4f;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 15px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transition: opacity 1s ease-in-out, transform 0.5s ease-in-out;
+      z-index: 9999;
+      transform: translateX(-50%) translateY(20px);
+    }
+
+    #clickMessage {
+      position: absolute;
+      top: 150px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.5em;
+      font-weight: 600;
+      color: #c2185b;
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 10px 20px;
+      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      z-index: 9999;
+    }
+
+    audio {
+      display: none;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5em;
+      }
+
+      p {
+        font-size: 1.1em;
+      }
+
+      .heart {
+        font-size: 2.5em;
+      }
+
+      #message, #score {
+        font-size: 1.2em;
+      }
+
+      button {
+        font-size: 0.9em;
+        padding: 12px 25px;
+      }
+
+      .floating-heart {
+        font-size: 2em;
+      }
+
+      .catch-message {
+        font-size: 1.5em;
+        padding: 10px 20px;
+        transform: translateX(-50%) translateY(10px);
+      }
+
+      #clickMessage {
+        top: 120px;
+        font-size: 1.3em;
+        padding: 8px 15px;
+      }
+
+      #envelope {
+        font-size: 3em;
+      }
+    }
+
+    /* Very small devices */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      p {
+        font-size: 1em;
+      }
+
+      .heart {
+        font-size: 2em;
+      }
+
+      button {
+        font-size: 0.8em;
+        padding: 10px 20px;
+      }
+
+      .floating-heart {
+        font-size: 1.8em;
+      }
+
+      .catch-message {
+        font-size: 1.2em;
+        padding: 8px 15px;
+      }
+
+      #clickMessage {
+        font-size: 1.2em;
+        top: 100px;
+        padding: 6px 12px;
+      }
+
+      #envelope {
+        font-size: 2.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>I'm Really Sorry 😔</h1>
+  <div class="heart">💖</div>
+  <p>I didn’t mean to upset you.<br>You mean a lot to me, and I hate seeing you hurt.</p>
+  <p>Please forgive me?</p>
+
+  <button onclick="startGame()">Click for a Surprise</button>
+
+  <div id="score"></div>
+  <div id="message"></div>
+
+  <div id="envelope" onclick="openEnvelope()">📩</div>
+  <div id="letter"></div>
+
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const loveMessages = [
+      "Even on the darkest days, your smile lights up everything. 💕",
+      "You're the missing piece of my heart. 🧩❤️",
+      "I'm still in love with every part of you. 🌹",
+      "Forgive me, and I’ll spend forever making it up to you. 💌",
+      "You make everything better just by being here. ☀️",
+      "Your laugh is my favorite song. 🎶",
+      "I wish I could hug you right now and never let go. 🐻",
+      "You’re my favorite reason to smile. 😘",
+      "My heart is yours — always. 💖",
+      "No matter what, I choose you. Again and again. 💍"
+    ];
+
+    let messageQueue = [];
+    let score = 0;
+    let gameActive = false;
+
+    function shuffleMessages() {
+      messageQueue = [...loveMessages];
+      for (let i = messageQueue.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [messageQueue[i], messageQueue[j]] = [messageQueue[j], messageQueue[i]];
+      }
+    }
+
+    function startGame() {
+      score = 0;
+      gameActive = true;
+      document.getElementById("message").innerHTML = "Catch the hearts! ❤️";
+      document.getElementById("score").innerText = `Hearts caught: ${score}/10`;
+      document.getElementById("letter").style.display = "none";
+      document.getElementById("envelope").style.display = "none";
+      spawnHeart();
+      showClickMessage(); // Show the "Click me" message
+    }
+
+    function showClickMessage() {
+      const clickMessage = document.getElementById("clickMessage");
+      clickMessage.style.opacity = 1;
+    }
+
+    function hideClickMessage() {
+      const clickMessage = document.getElementById("clickMessage");
+      clickMessage.style.opacity = 0;
+    }
+
+    function spawnHeart() {
+      if (!gameActive || score >= 10) return;
+
+      const heart = document.createElement("div");
+      heart.classList.add("floating-heart");
+      heart.innerHTML = "💗";
+
+      const startX = Math.random() * (window.innerWidth - 40);
+      heart.style.left = `${startX}px`;
+
+      heart.onclick = (e) => {
+        showCatchMessage(); // Show the catch message
+        showCatPaw(e.clientX, e.clientY); // Show paw animation
+        heart.remove();
+        score++;
+        document.getElementById("score").innerText = `Hearts caught: ${score}/10`;
+        if (score >= 10) {
+          endGame();
+        }
+      };
+
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+
+      if (gameActive && score < 10) {
+        setTimeout(spawnHeart, 1500);
+      }
+    }
+
+    function showCatchMessage() {
+      const catchMessage = document.createElement("div");
+      catchMessage.classList.add("catch-message");
+      catchMessage.innerHTML = "You caught a heart! Madam Ji ❤️"; // The message with "Madam Ji"
+      document.body.appendChild(catchMessage);
+
+      setTimeout(() => {
+        catchMessage.style.opacity = 1;
+        catchMessage.style.transform = 'translateX(-50%) translateY(0)';
+      }, 100);
+
+      setTimeout(() => {
+        catchMessage.style.opacity = 0;
+        catchMessage.style.transform = 'translateX(-50%) translateY(20px)';
+      }, 2000);
+
+      setTimeout(() => catchMessage.remove(), 3000);
+    }
+
+    function showCatPaw(x, y) {
+      const paw = document.createElement("img");
+      paw.src = "https://i.imgur.com/W4nrjxo.png"; // Replace with a paw image URL
+      paw.classList.add("cat-paw");
+      paw.style.left = `${x - 40}px`;
+      paw.style.top = `${y - 40}px`;
+      document.body.appendChild(paw);
+
+      setTimeout(() => paw.remove(), 800);
+    }
+
+    function endGame() {
+      gameActive = false;
+      document.getElementById("message").innerHTML = `
+        You caught all the hearts! 🥹❤️<br>
+        That’s how much I care about you.
+      `;
+      showFlowers();
+      showEnvelope();
+    }
+
+    function showFlowers() {
+      for (let i = 0; i < 30; i++) {
+        const flower = document.createElement("div");
+        flower.classList.add("falling-flower");
+        flower.innerHTML = "🌸";
+        flower.style.left = `${Math.random() * 100}vw`;
+        flower.style.animationDelay = `${Math.random() * 5}s`;
+        document.body.appendChild(flower);
+
+        setTimeout(() => flower.remove(), 6000);
+      }
+    }
+
+    function showEnvelope() {
+      document.getElementById("envelope").style.display = "block";
+      hideClickMessage(); // Hide the "Click me" message after envelope is shown
+    }
+
+    function openEnvelope() {
+      if (messageQueue.length === 0) {
+        shuffleMessages();
+      }
+
+      const letter = document.getElementById("letter");
+      const message = messageQueue.pop();
+      letter.innerHTML = `"${message}"`;
+      letter.style.display = "block";
+    }
+
+    shuffleMessages();
+  </script>
+</body>
+</html>
